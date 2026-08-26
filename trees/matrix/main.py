@@ -1,0 +1,8 @@
+def countIslands(grid, k):
+    def dfs(row, col):
+            return
+    
+grid = [[0,2,1,0,0],[0,5,0,0,5],[0,0,1,0,0],[0,1,4,7,0],[0,2,0,0,8]]
+k = 5
+
+# Output: 2
