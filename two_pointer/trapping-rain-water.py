@@ -1,0 +1,32 @@
+# Trapping Rain Water
+# Hard
+# Topics
+# Company Tags
+# Hints
+# You are given an array of non-negative integers height which represent an elevation map. Each value height[i] 
+# represents the height of a bar, which has a width of 1.
+# Return the total amount of water that can be trapped between the bars.
+# Example 1:
+# Input: height = [0,2,0,3,1,0,1,3,2,1]
+
+# Output: 9
+# Constraints:
+
+# 1 <= height.length <= 20,000
+# 0 <= height[i] <= 100,000
+
+def trapping(height):
+    res = 0
+    l = 0
+    r = 1
+    while l != len(height) and r != len(height):
+        for i in range(len(height)):
+            trap = min(height[l], height[r]) - height[i]
+            if trap > res:
+                res += trap
+    return res
+
+
+height = [0,2,0,3,1,0,1,3,2,1]    
+print(trapping(height), "sdfsdfd")   
+    
