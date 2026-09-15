@@ -39,3 +39,12 @@
 # Company
 # Microsoft
 # Recommend Courses
+def reverse(s):
+    res = ""
+    
+    left = 0
+    right = len(s)
+    
+    while left < right:
+        if s[left].isalnum():
+            left, right = right, left
