@@ -1,0 +1,136 @@
+"""Binary Search practice questions - Easy and Hard levels with simple explanations."""
+
+QUESTIONS = [
+    # Easy Level
+    {
+        "title": "1. Binary Search",
+        "difficulty": "Easy",
+        "array_statement": "Given a sorted array of integers and a target value, find the index where the target is located.",
+        "prompt": "Find the index of a target value in a sorted array. Return -1 if not found.",
+        "approaches": {
+            "brute_force": "Linear scan through array - O(n) time, O(1) space. Check each element until target found.",
+            "optimized": "Binary search - divide array in half each iteration. O(log n) time, O(1) space.",
+        },
+        "explanation": "Search for a number in a sorted list by checking the middle element. If target is smaller, search left half; if larger, search right half. Keep narrowing down until found.",
+        "example": "nums = [1, 3, 5, 7, 9, 11], target = 7 -> 3",
+        "url": "https://leetcode.com/problems/binary-search/",
+    },
+    {
+        "title": "2. First Bad Version",
+        "difficulty": "Easy",
+        "array_statement": "Given versions 1 to n where all good versions come before bad ones, find the first bad version.",
+        "prompt": "Find the first bad version in a sequence of versions. Assume versions are sequential and once a version is bad, all following versions are also bad.",
+        "approaches": {
+            "brute_force": "Check each version from 1 to n sequentially - O(n) time, O(1) space. Stop at first bad version.",
+            "optimized": "Binary search on version range - O(log n) time, O(1) space. One half is always good, other is bad.",
+        },
+        "explanation": "Use binary search to find where bad versions start. Check the middle version - if it's bad, search the left half (earlier versions). If it's good, search the right half (later versions).",
+        "example": "n = 5, bad = 4 -> First bad version is 4 (versions 4,5 are bad)",
+        "url": "https://leetcode.com/problems/first-bad-version/",
+    },
+    {
+        "title": "3. Valid Perfect Square",
+        "difficulty": "Easy",
+        "array_statement": "Given a positive integer, determine if it's a perfect square (square of some integer).",
+        "prompt": "Check if a number is a perfect square without using built-in functions like sqrt().",
+        "approaches": {
+            "brute_force": "Try all numbers from 1 to n, square each and check - O(n) time, O(1) space.",
+            "optimized": "Binary search for square root - O(log n) time, O(1) space. Search range is 1 to n.",
+        },
+        "explanation": "Binary search for the square root. Check if mid * mid equals the target. Adjust left and right bounds accordingly.",
+        "example": "num = 16 -> True (4 * 4 = 16), num = 17 -> False",
+        "url": "https://leetcode.com/problems/valid-perfect-square/",
+    },
+    {
+        "title": "4. Guess Number Higher or Lower",
+        "difficulty": "Easy",
+        "array_statement": "Given a range 1 to n with a hidden secret number, use guesses to find it. Receive feedback if guess is too high/low.",
+        "prompt": "Guess a secret number by asking 'higher' or 'lower' questions. Minimize the number of guesses.",
+        "approaches": {
+            "brute_force": "Try numbers sequentially from 1 to n - O(n) guesses worst case.",
+            "optimized": "Binary search - guess middle, get feedback, eliminate half - O(log n) guesses worst case.",
+        },
+        "explanation": "Binary search approach - guess the middle number, get feedback (higher/lower), and eliminate half of remaining possibilities.",
+        "example": "n = 10, pick = 6 -> Guess 5 (too low), guess 7 (too high), guess 6 (correct)",
+        "url": "https://leetcode.com/problems/guess-number-higher-or-lower/",
+    },
+    {
+        "title": "5. Peak Index in a Mountain Array",
+        "difficulty": "Easy",
+        "array_statement": "Given array that increases to a peak then decreases. Find the index of the peak element.",
+        "prompt": "Find the index of the peak (maximum value) in an array that increases then decreases.",
+        "approaches": {
+            "brute_force": "Scan array to find element where arr[i] > arr[i+1] - O(n) time, O(1) space.",
+            "optimized": "Binary search comparing mid with neighbors - O(log n) time, O(1) space. One side always goes up, other goes down.",
+        },
+        "explanation": "Binary search by comparing mid with neighbors. If mid's right neighbor is larger, peak is on the right. Otherwise, peak is on the left or at mid.",
+        "example": "arr = [1, 3, 5, 4, 2] -> 2 (value 5 is the peak)",
+        "url": "https://leetcode.com/problems/peak-index-in-a-mountain-array/",
+    },
+    # Hard Level
+    {
+        "title": "6. Search in Rotated Sorted Array",
+        "difficulty": "Hard",
+        "array_statement": "Given a rotated sorted array (rotated around pivot), find the index of a target value.",
+        "prompt": "Find target index in a rotated sorted array. Example: [4,5,6,7,0,1,2] is a rotation of [0,1,2,4,5,6,7].",
+        "approaches": {
+            "brute_force": "Linear scan through array - O(n) time, O(1) space.",
+            "optimized": "Binary search exploiting sorted property - O(log n) time, O(1) space. Key insight: one half is always sorted.",
+        },
+        "explanation": "Binary search but be careful - one half is always sorted. Check which half is sorted, then determine if target is in that sorted half. Adjust left/right accordingly.",
+        "example": "nums = [4, 5, 6, 7, 0, 1, 2], target = 0 -> 4",
+        "url": "https://leetcode.com/problems/search-in-rotated-sorted-array/",
+    },
+    {
+        "title": "7. Find Minimum in Rotated Sorted Array",
+        "difficulty": "Hard",
+        "array_statement": "Given a rotated sorted array of unique integers, find the minimum element.",
+        "prompt": "Find the minimum value in a rotated sorted array of unique elements.",
+        "approaches": {
+            "brute_force": "Scan entire array to find minimum - O(n) time, O(1) space.",
+            "optimized": "Binary search using sorted half property - O(log n) time, O(1) space. Minimum is at rotation point or in unsorted half.",
+        },
+        "explanation": "In a rotated array, one half is always sorted. The minimum is either at the rotation point or in the unsorted half. Use binary search to find it.",
+        "example": "nums = [3, 4, 5, 1, 2] -> 1",
+        "url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
+    },
+    {
+        "title": "8. Median of Two Sorted Arrays",
+        "difficulty": "Hard",
+        "array_statement": "Given two sorted arrays, find the median of the combined array in logarithmic time.",
+        "prompt": "Find the median of two sorted arrays in logarithmic time complexity.",
+        "approaches": {
+            "brute_force": "Merge arrays and find median - O(m+n) time, O(m+n) space. Simple but not optimal.",
+            "optimized": "Binary search on smaller array with partition approach - O(log(min(m,n))) time, O(1) space. Key insight: balance left/right partitions.",
+        },
+        "explanation": "Use binary search on the smaller array. At each step, partition both arrays so that left side and right side have equal elements. The median is found when partitions are balanced.",
+        "example": "nums1 = [1, 3], nums2 = [2] -> 2.0",
+        "url": "https://leetcode.com/problems/median-of-two-sorted-arrays/",
+    },
+    {
+        "title": "9. Search a 2D Matrix II",
+        "difficulty": "Hard",
+        "array_statement": "Given 2D matrix with sorted rows and columns, search for a target value.",
+        "prompt": "Search for a target in a 2D matrix where rows and columns are sorted in ascending order.",
+        "approaches": {
+            "brute_force": "Brute force search every element - O(m*n) time, O(1) space.",
+            "pattern_approach": "Start from corner (top-right or bottom-left) and eliminate rows/columns - O(m+n) time, O(1) space. Smart pattern: moving one direction eliminates one row/column.",
+        },
+        "explanation": "Start from top-right or bottom-left corner. Compare target with current element. If too small, move left/down. If too large, move right/up. This works because of the sorted structure.",
+        "example": "matrix = [[1,4,7,11],[2,5,8,12],[3,6,9,16],[10,13,14,17]], target = 13 -> True",
+        "url": "https://leetcode.com/problems/search-a-2d-matrix-ii/",
+    },
+    {
+        "title": "10. Time Based Key-Value Store",
+        "difficulty": "Hard",
+        "array_statement": "Design a data structure to store key-value pairs with timestamps and retrieve latest value at given time.",
+        "prompt": "Design a store that returns the latest value for a key at or before a given timestamp.",
+        "approaches": {
+            "brute_force": "For each get, scan all timestamps for that key - O(n) per get, O(1) space for each key's timestamps.",
+            "optimized": "Store timestamps in sorted array per key, use binary search to find latest timestamp - O(log n) per get, O(n) space to store all entries.",
+        },
+        "explanation": "Store (key, value, timestamp) pairs. Use binary search on timestamps for each key to find the greatest timestamp <= requested time.",
+        "example": "set('foo','bar',1), get('foo',3) -> 'bar' (latest value before or at time 3)",
+        "url": "https://leetcode.com/problems/time-based-key-value-store/",
+    },
+]
