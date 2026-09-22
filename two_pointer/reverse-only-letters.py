@@ -39,6 +39,7 @@
 # Company
 # Microsoft
 # Recommend Courses
+<<<<<<< Updated upstream
 def reverse(s):
     res = ""
     
@@ -48,3 +49,20 @@ def reverse(s):
     while left < right:
         if s[left].isalnum():
             left, right = right, left
+=======
+def reverseOnlyLetters(S):
+    left = 0
+    right = len(S) - 1
+    S = list(S)
+    while left < right:
+        while left < right and not S[left].isalnum():
+            left += 1
+        while left < right and not S[right].isalnum():
+            right -= 1
+        S[left], S[right] = S[right], S[left]
+        left += 1
+        right -= 1
+    return "".join(S)
+
+print(reverseOnlyLetters("Test1ng-Leet=code-Q!"))
+>>>>>>> Stashed changes
