@@ -13,6 +13,9 @@ class TreeNode:
         print(f"{indent}Level {level}: {self.data}")
         for child in self.children:
             child.print_tree(level + 1)
+            
+    def count_nodes(self):
+        
 
 
 def build_product_tree():
